@@ -9,12 +9,17 @@ public class PathComponent : MonoBehaviour
     
     public GameObject getNextWaypoint()
     {
+        
         for (int i = wayPoints.Length - 1; i != -1; i--) {
             if (wayPoints[i].GetComponent<WaypointComponent>().isOccupied == false) {
+                
+                Debug.Log(wayPoints[i].name + " is now occupied ..");
                 wayPoints[i].GetComponent<WaypointComponent>().isOccupied = true;
                 if (i != 0)
                     wayPoints[i-1].GetComponent<WaypointComponent>().isOccupied = false;
                 return wayPoints[i];
+            } else {
+                Debug.Log(wayPoints[i].name + " is occupied !");
             }
         }
         return (null);

@@ -6,27 +6,26 @@ public class PathFollowingComponent : MonoBehaviour
 {
     public float speed = 5;
     private GameObject path;
-    private GameObject wayPoint;
+    public GameObject wayPoint;
     // Start is called before the first frame update
     void Start()
     {
         path = GameObject.Find("Path");
-        wayPoint = path.GetComponent<PathComponent>().getNextWaypoint();
         findNewPlace();
     }
 
     public void findNewPlace()
     {
-        if (path.GetComponent<PathComponent>().isFull() == false && Vector3.Distance(transform.position, wayPoint.transform.position) < 0.001f) {
+        if (path.GetComponent<PathComponent>().isFull() == false) {
             wayPoint = path.GetComponent<PathComponent>().getNextWaypoint();
+            Debug.Log("new waypoint is "+ wayPoint.name);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (wayPoint) {
-            transform.position = Vector2.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);
-        }
+        if (wayPoint)
+            transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);
     }
 }

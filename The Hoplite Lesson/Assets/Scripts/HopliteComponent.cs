@@ -5,11 +5,11 @@ using UnityEngine;
 public class HopliteComponent : MonoBehaviour
 {
     public GameObject target;
-    private GameObject EventHandler;
+    private EventComponent EventHandler;
     // Start is called before the first frame update
     void Start()
     {
-        EventHandler = GameObject.Find("EventHandler");
+        EventHandler = GameObject.Find("EventHandler").GetComponent<EventComponent>();
     }
 
     private bool isDecisionRight(bool accepted)
@@ -25,6 +25,7 @@ public class HopliteComponent : MonoBehaviour
     
     public void AnswerIncorrectly()
     {
+        Debug.Log("Wrong Answer !");
         // gain time
     }
 
@@ -32,7 +33,7 @@ public class HopliteComponent : MonoBehaviour
     {
         Debug.Log("Kick out");
         target.GetComponent<PhilosopherComponent>().GetKickedOut();
-        EventHandler.GetComponent<EventComponent>().InvokePhilosopherLeft();
+        EventHandler.InvokePhilosopherLeft();
         target = null;
         //Change animation hoplite
         //Remonter vie
@@ -42,7 +43,7 @@ public class HopliteComponent : MonoBehaviour
     {
         Debug.Log("let inside");
         target.GetComponent<PhilosopherComponent>().GetInside();
-        EventHandler.GetComponent<EventComponent>().InvokePhilosopherLeft();
+        EventHandler.InvokePhilosopherLeft();
         target = null;
         //Change animation hoplite
         //Remonter vie
