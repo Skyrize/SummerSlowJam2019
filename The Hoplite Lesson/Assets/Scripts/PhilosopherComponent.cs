@@ -30,6 +30,11 @@ public class PhilosopherComponent : MonoBehaviour
         GetComponent<PathFollowingComponent>().wayPoint = null;
     }
 
+    public void Die()
+    {
+        Destroy(this.gameObject);
+    }
+
     public void GetKickedOut()
     {
         transform.parent = null;
@@ -39,6 +44,7 @@ public class PhilosopherComponent : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(new Vector2(-500, 500));
         GetComponent<Rigidbody2D>().AddTorque(500);
         question.SetActive(false);
+        Invoke("Die", 2);
         
     }
 
@@ -54,7 +60,7 @@ public class PhilosopherComponent : MonoBehaviour
     private float speed = 5;
     void Update()
     {
-        if (question.activeInHierarchy == false && Vector3.Distance(transform.position, path.GetComponent<PathComponent>().wayPoints[path.GetComponent<PathComponent>().wayPoints.Length - 1].transform.position) < 0.001f)
+        if (question.activeInHierarchy == false && Vector3.Distance(transform.position, path.GetComponent<PathComponent>().wayPoints[path.GetComponent<PathComponent>().wayPoints.Length - 1].transform.position) < 0.001f && GetComponent<Rigidbody2D>().simulated == false)
             AskQuestion();
         if (isAllowedInside) {
             if (Vector3.Distance(transform.position, entry.transform.position) < 0.001f) {

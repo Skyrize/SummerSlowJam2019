@@ -17,14 +17,14 @@ public class QuestionComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Random.Range(0, 1) == 0) {
+        if (Random.Range(0, 2) == 0) {
             answer = false;
             text.text = wrongAnswers[Random.Range(0, wrongAnswers.Length - 1)];
         } else {
             answer = true;
-            text.text = rightAnswers[Random.Range(0, wrongAnswers.Length - 1)];
+            text.text = rightAnswers[Random.Range(0, rightAnswers.Length - 1)];
         }
-
+        Debug.Log("I chose '" + text.text);
     }
 
     // Update is called once per frame
