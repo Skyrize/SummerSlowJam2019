@@ -20,6 +20,7 @@ public class PhilosopherComponent : MonoBehaviour
 
     public void AskQuestion()
     {
+        Debug.Log("question");
         hoplite.GetComponent<HopliteComponent>().target = gameObject;
         question.SetActive(true);
     }
@@ -37,13 +38,13 @@ public class PhilosopherComponent : MonoBehaviour
 
     public void GetKickedOut()
     {
+        question.SetActive(false);
         transform.parent = null;
         LeaveWaypoint();
         //animate
         GetComponent<Rigidbody2D>().simulated = true;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(-500, 500));
         GetComponent<Rigidbody2D>().AddTorque(500);
-        question.SetActive(false);
         Invoke("Die", 2);
         
     }
@@ -51,6 +52,7 @@ public class PhilosopherComponent : MonoBehaviour
     private bool isAllowedInside = false;
     public void GetInside()
     {
+        question.SetActive(false);
         transform.parent = null;
         LeaveWaypoint();
         isAllowedInside = true;
@@ -60,7 +62,7 @@ public class PhilosopherComponent : MonoBehaviour
     private float speed = 5;
     void Update()
     {
-        if (question.activeInHierarchy == false && Vector3.Distance(transform.position, path.GetComponent<PathComponent>().wayPoints[path.GetComponent<PathComponent>().wayPoints.Length - 1].transform.position) < 0.001f && GetComponent<Rigidbody2D>().simulated == false)
+        if (question.activeInHierarchy == false && Vector3.Distance(transform.position, path.GetComponent<PathComponent>().wayPoints[path.GetComponent<PathComponent>().wayPoints.Length - 1].transform.position) < 0.001f && transform.parent != null)
             AskQuestion();
         if (isAllowedInside) {
             if (Vector3.Distance(transform.position, entry.transform.position) < 0.001f) {
