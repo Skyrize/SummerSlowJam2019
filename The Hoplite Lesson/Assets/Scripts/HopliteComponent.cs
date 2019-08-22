@@ -6,10 +6,12 @@ public class HopliteComponent : MonoBehaviour
 {
     public GameObject target;
     private EventComponent EventHandler;
+    private HealthBarComponent healthBar;
     // Start is called before the first frame update
     void Start()
     {
         EventHandler = GameObject.Find("EventHandler").GetComponent<EventComponent>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBarComponent>();
     }
 
     private bool isDecisionRight(bool accepted)
@@ -20,11 +22,13 @@ public class HopliteComponent : MonoBehaviour
 
     public void AnswerCorrectly()
     {
+        healthBar.addHealth(20);
             //change animation hoplite
     }
     
     public void AnswerIncorrectly()
     {
+        healthBar.removeHealth(10);
         Debug.Log("Wrong Answer !");
             //zeus
         // gain time
