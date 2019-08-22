@@ -14,18 +14,19 @@ public class HopliteComponent : MonoBehaviour
 
     private bool isDecisionRight(bool accepted)
     {
+        Debug.Log(target.GetComponent<PhilosopherComponent>().question.GetComponent<QuestionComponent>().answer);
         return (target.GetComponent<PhilosopherComponent>().question.GetComponent<QuestionComponent>().answer == accepted);
     }
 
     public void AnswerCorrectly()
     {
-            //zeus
             //change animation hoplite
     }
     
     public void AnswerIncorrectly()
     {
         Debug.Log("Wrong Answer !");
+            //zeus
         // gain time
     }
 
@@ -51,7 +52,9 @@ public class HopliteComponent : MonoBehaviour
 
     public void TryKickOut()
     {
+        Debug.Log("try kickout");
         if (isDecisionRight(false) == true) {
+            AnswerCorrectly();
             KickOut();
         } else {
             AnswerIncorrectly();
@@ -61,6 +64,7 @@ public class HopliteComponent : MonoBehaviour
     public void TryLetInside()
     {
         if (isDecisionRight(true) == true) {
+            AnswerCorrectly();
             LetInside();
         } else {
             AnswerIncorrectly();

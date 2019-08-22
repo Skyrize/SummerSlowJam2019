@@ -18,7 +18,6 @@ public class PathFollowingComponent : MonoBehaviour
     {
         if (path.GetComponent<PathComponent>().isFull() == false) {
             wayPoint = path.GetComponent<PathComponent>().getNextWaypoint();
-            Debug.Log("new waypoint is "+ wayPoint.name);
         }
     }
 

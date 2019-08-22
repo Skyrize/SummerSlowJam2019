@@ -20,7 +20,6 @@ public class PhilosopherComponent : MonoBehaviour
 
     public void AskQuestion()
     {
-        Debug.Log("Asking question ..");
         hoplite.GetComponent<HopliteComponent>().target = gameObject;
         question.SetActive(true);
     }
@@ -36,9 +35,11 @@ public class PhilosopherComponent : MonoBehaviour
         transform.parent = null;
         LeaveWaypoint();
         //animate
-        Debug.Log("Get Kicked out !");
         GetComponent<Rigidbody2D>().simulated = true;
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(-100, 100));
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(-500, 500));
+        GetComponent<Rigidbody2D>().AddTorque(500);
+        question.SetActive(false);
+        
     }
 
     private bool isAllowedInside = false;
@@ -46,7 +47,6 @@ public class PhilosopherComponent : MonoBehaviour
     {
         transform.parent = null;
         LeaveWaypoint();
-        Debug.Log("Get inside !");
         isAllowedInside = true;
     }
 
@@ -58,7 +58,6 @@ public class PhilosopherComponent : MonoBehaviour
             AskQuestion();
         if (isAllowedInside) {
             if (Vector3.Distance(transform.position, entry.transform.position) < 0.001f) {
-                Debug.Log("Destroy");
                 Destroy(this.gameObject);
             } else {
                 transform.position = Vector3.MoveTowards(transform.position, entry.transform.position, speed * Time.deltaTime);
