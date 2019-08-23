@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ZeusController : MonoBehaviour
 {
-    public int speed = 1;
-    public float limitationSliding = 0.5F;
+    public float speed = 0.5f;
+    public float limitationSliding = 0.5f;
 
     private float yStart;
     private int direction = 1;
@@ -35,6 +35,5 @@ public class ZeusController : MonoBehaviour
         if (yStart - limitationSliding < transform.position.y && direction == 1) {
             direction = -1;
         }
-
     }
 }
