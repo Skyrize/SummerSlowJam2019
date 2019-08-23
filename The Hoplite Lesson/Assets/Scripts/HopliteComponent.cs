@@ -11,6 +11,8 @@ public class HopliteComponent : MonoBehaviour
     private HealthBarComponent healthBar;
     private ThunderboldHandler flashCamera;
     private GameObject defeateHandler;
+
+    private AudioManagerComponent audioManager;
     // private Scene currentScene;
 
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class HopliteComponent : MonoBehaviour
         flashCamera = GameObject.Find("Flash").GetComponent<ThunderboldHandler>();
         defeateHandler = GameObject.Find("Defeate");
         defeateHandler.SetActive(false);
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerComponent>();
         // currentScene = SceneManager.GetActiveScene();
     }
 
@@ -39,6 +42,7 @@ public class HopliteComponent : MonoBehaviour
     {
         healthBar.removeHealth(10);
         flashCamera.doCameraFlash = true;
+        audioManager.PlaySound("LightningSound");
         KickOut();
         // gain time
     }
@@ -48,6 +52,7 @@ public class HopliteComponent : MonoBehaviour
         target.GetComponent<PhilosopherComponent>().GetKickedOut();
         EventHandler.InvokePhilosopherLeft();
         target = null;
+        audioManager.PlaySound("KickOutSound");
         //Change animation hoplite
         //Remonter vie
     }
