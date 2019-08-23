@@ -10,6 +10,7 @@ public class HopliteComponent : MonoBehaviour
     private HealthBarComponent healthBar;
     private ThunderboldHandler flashCamera;
 
+    private float timeAlive = 0;
     private AudioManagerComponent audioManager;
     // private Scene currentScene;
 
@@ -32,6 +33,7 @@ public class HopliteComponent : MonoBehaviour
 
     public void Die()
     {
+        GameObject.Find("TextHandler").transform.Find("Defeate").GetComponent<Text>().text = "Well done buddy, you succed to hold for " + ((int)timeAlive).ToString() + " seconds !\r Press 'R' to restart the game.";
         flashCamera.doCameraFlash = true;
         audioManager.PlaySound("LightningSound");
         GetComponent<Rigidbody2D>().simulated = true;
@@ -96,6 +98,7 @@ public class HopliteComponent : MonoBehaviour
     void Update()
     {
         if (healthBar.isAlive()) {
+            timeAlive += Time.deltaTime;
             if (target) {
                 if (Input.GetKeyDown(KeyCode.Space)) {
                     TryKickOut();

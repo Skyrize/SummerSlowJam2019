@@ -19,8 +19,7 @@ public class HealthBarComponent : MonoBehaviour
     {
         bar = transform.Find("Bar");
         maxHealth = health;
-        defeateHandler = GameObject.Find("Defeate");
-        defeateHandler.SetActive(false);
+        defeateHandler = GameObject.Find("TextHandler").transform.Find("Defeate").gameObject;
     }
 
     public void setSize(float size)
@@ -64,8 +63,9 @@ public class HealthBarComponent : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
             removeHealth(100);
         removeHealth(dyingSpeed * Time.deltaTime);
-        if (!isAlive())
+        if (!isAlive()) {
             defeateHandler.SetActive(true);
+        }
         if (health < 45) {
             if (timer <= 0) {
                 if (health < 30) {

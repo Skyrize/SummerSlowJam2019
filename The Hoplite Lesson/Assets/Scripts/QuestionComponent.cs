@@ -22,6 +22,15 @@ public class QuestionComponent : MonoBehaviour
         "Titans are a race of deities.",
         "Primordial deities are the first gods and goddesses born from the void of Chaos.",
         "The primordial deities Gaia and Uranus give birth to the Titans, and the Cyclopses.",
+        "Cult of Dionysos has inspired theatrical culture.",
+        "Dionysos is Aphrodite's son.",
+        "Medusa was beheaded by Perseus.",
+        "Helios is the personification of the sun.",
+        "Medusa can turn people to stone.",
+        "Pegasus sprang from Medusa's body.",
+        "Aphrodite was married to Hephaestus.",
+        "Byzantium is the ancient name of Istanbul.",
+        "Trojan war has ended because of a wooden horse.",
     };
     static private string[] wrongAnswers = {
         "Zeus is the god of the sea.",
@@ -37,6 +46,15 @@ public class QuestionComponent : MonoBehaviour
         "Uranus is Poseidon’s brother.",
         "Gaia and Uranus gave birth to Hades and his brothers.",
         "The Titans and the Cyclopses are born from the same parents.",
+        "Dionysos is also named Lycos.",
+        "Dionysos is also called 'the drunken master'.",
+        "Satyrs are sort of cats with wings.",
+        "Medusa is the queen of the sea.",
+        "Medusa was beheaded by Heracles.",
+        "Medusa can turn people to hotdog.",
+        "Helios is the personification of rainy days.",
+        "Aphrodite was married to Ulysse.",
+        "Trojan war has begun because of a wooden horse.",
     };
     public bool answer = false;
 

@@ -12,7 +12,6 @@ public class DefeateHandler : MonoBehaviour
     {
         Transform crowd = GameObject.Find("Crowd").transform;
 
-        GetComponent<Text>().text = "Well done buddy, you succed to hold for " + ((int)Time.time).ToString() + " seconds !\r Press 'R' to restart the game.";
         Color tmp = GameObject.Find("Image").GetComponent<Image>().color;
         tmp.a = 0.7f;
         GameObject.Find("Image").GetComponent<Image>().color = tmp;

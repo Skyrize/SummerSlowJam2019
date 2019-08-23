@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 public class SceneSwitcher : MonoBehaviour
 {
     
+    private void Start()
+    {
+        GameObject.Find("AudioManager").GetComponent<AudioManagerComponent>().PlaySound("MenuMusic");
+    }
 
     public void GotoMenuScene()
     {
