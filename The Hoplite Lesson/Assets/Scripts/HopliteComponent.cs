@@ -30,6 +30,15 @@ public class HopliteComponent : MonoBehaviour
         return (target.GetComponent<PhilosopherComponent>().question.GetComponent<QuestionComponent>().answer == accepted);
     }
 
+    public void Die()
+    {
+        flashCamera.doCameraFlash = true;
+        audioManager.PlaySound("LightningSound");
+        GetComponent<Rigidbody2D>().simulated = true;
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(500, 500));
+        GetComponent<Rigidbody2D>().AddTorque(-500);
+    }
+
     public void AnswerCorrectly()
     {
         healthBar.addHealth(20);

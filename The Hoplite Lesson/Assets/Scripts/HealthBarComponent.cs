@@ -13,6 +13,7 @@ public class HealthBarComponent : MonoBehaviour
     private float slowTimer = 0.3f;
     private float timer = 0;
     private GameObject defeateHandler;
+
     
     void Start()
     {
@@ -60,6 +61,8 @@ public class HealthBarComponent : MonoBehaviour
     }
 
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.Y))
+            removeHealth(100);
         removeHealth(dyingSpeed * Time.deltaTime);
         if (!isAlive())
             defeateHandler.SetActive(true);
