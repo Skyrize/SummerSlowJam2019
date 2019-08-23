@@ -17,6 +17,6 @@ public class SceneSwitcher : MonoBehaviour
 
     public void GotoGameScene()
     {
-    	SceneManager.LoadScene("GameScene");
+    	SceneManager.LoadScene("SampleScene");
     }
 }
