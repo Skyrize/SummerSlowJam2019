@@ -593,7 +593,7 @@ MonoBehaviour:
   SpawningEntity: {fileID: 7815367783286165249, guid: 99bfd513fc4f3464888b6b4bd00dc1a2,
     type: 3}
   crowd: {fileID: 45954216}
-  cooldown: 1
+  cooldown: 1.5
 --- !u!1 &783529127
 GameObject:
   m_ObjectHideFlags: 0

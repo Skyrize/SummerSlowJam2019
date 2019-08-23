@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  dyingSpeed: 10
+  dyingSpeed: 4.5
 --- !u!1 &6806801117722452446
 GameObject:
   m_ObjectHideFlags: 0

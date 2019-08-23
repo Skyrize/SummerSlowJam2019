@@ -20,7 +20,6 @@ public class PhilosopherComponent : MonoBehaviour
 
     public void AskQuestion()
     {
-        Debug.Log("question");
         hoplite.GetComponent<HopliteComponent>().target = gameObject;
         question.SetActive(true);
     }

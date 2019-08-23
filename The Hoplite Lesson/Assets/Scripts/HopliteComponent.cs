@@ -26,7 +26,6 @@ public class HopliteComponent : MonoBehaviour
 
     private bool isDecisionRight(bool accepted)
     {
-        Debug.Log(target.GetComponent<PhilosopherComponent>().question.GetComponent<QuestionComponent>().answer);
         return (target.GetComponent<PhilosopherComponent>().question.GetComponent<QuestionComponent>().answer == accepted);
     }
 
@@ -39,14 +38,13 @@ public class HopliteComponent : MonoBehaviour
     public void AnswerIncorrectly()
     {
         healthBar.removeHealth(10);
-        Debug.Log("Wrong Answer !");
         flashCamera.doCameraFlash = true;
+        KickOut();
         // gain time
     }
 
     public void KickOut()
     {
-        Debug.Log("Kick out");
         target.GetComponent<PhilosopherComponent>().GetKickedOut();
         EventHandler.InvokePhilosopherLeft();
         target = null;
@@ -56,7 +54,6 @@ public class HopliteComponent : MonoBehaviour
 
     public void LetInside()
     {
-        Debug.Log("let inside");
         target.GetComponent<PhilosopherComponent>().GetInside();
         EventHandler.InvokePhilosopherLeft();
         target = null;
@@ -66,7 +63,6 @@ public class HopliteComponent : MonoBehaviour
 
     public void TryKickOut()
     {
-        Debug.Log("try kickout");
         if (isDecisionRight(false) == true) {
             AnswerCorrectly();
             KickOut();

@@ -25,7 +25,6 @@ public class PathFollowingComponent : MonoBehaviour
             //     oldWayPoint = wayPoint;
             // }
 
-            Debug.Log("new waypoint is "+ wayPoint.name);
             
         }
     }
@@ -35,13 +34,14 @@ public class PathFollowingComponent : MonoBehaviour
     {
         if (wayPoint) {
             transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);  
+            
+            if (transform.position == Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime)) {
+                GetComponent<Animator>().Play("philosopher1_idle");
+            } else {
+               GetComponent<Animator>().Play("philosopher1_walk");
+            }
         }
 
-        if (transform.position == Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime)) {
-            GetComponent<Animator>().Play("philosopher1_idle");
-        } else {
-            GetComponent<Animator>().Play("philosopher1_walk");
-        }
 
     }
 }

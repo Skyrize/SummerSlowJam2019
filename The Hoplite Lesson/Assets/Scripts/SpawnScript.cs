@@ -15,6 +15,7 @@ public class SpawnScript : MonoBehaviour
     {
         path = GameObject.Find("Path");
         crowd = GameObject.Find("Crowd");
+        timer = cooldown;
     }
 
     // Update is called once per frame
