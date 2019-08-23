@@ -6,15 +6,26 @@ public class AudioManagerComponent : MonoBehaviour
 {
     private Dictionary<string, AudioSource> sounds = new Dictionary<string, AudioSource>();
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         for (int i = 0; i != transform.childCount; i++) {
             sounds[transform.GetChild(i).name] = transform.GetChild(i).GetComponent<AudioSource>();
         }
-        sounds["GameBeginMusic"].Play();
-        sounds["GameMusic"].PlayDelayed(sounds["GameBeginMusic"].clip.length);
+        
+    }
+    void Start()
+    {
     }
 
+    public AudioSource GetSound(string sound)
+    {
+        return sounds[sound];
+    }
+    public void PlaySoundDelayed(string sound, float delay)
+    {
+        sounds[sound].PlayDelayed(delay);
+    }
     public void PlaySound(string sound)
     {
         sounds[sound].Play();

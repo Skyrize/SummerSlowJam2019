@@ -25,6 +25,8 @@ public class HopliteComponent : MonoBehaviour
         defeateHandler.SetActive(false);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerComponent>();
         // currentScene = SceneManager.GetActiveScene();
+        audioManager.PlaySound("GameBeginMusic");
+        audioManager.PlaySoundDelayed("GameMusic", audioManager.GetSound("GameBeginMusic").clip.length);
     }
 
     private bool isDecisionRight(bool accepted)
