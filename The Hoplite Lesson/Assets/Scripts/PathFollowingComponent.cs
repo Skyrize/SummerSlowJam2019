@@ -7,6 +7,8 @@ public class PathFollowingComponent : MonoBehaviour
     public float speed = 5;
     private GameObject path;
     public GameObject wayPoint;
+    private GameObject oldWayPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,18 +20,28 @@ public class PathFollowingComponent : MonoBehaviour
     {
         if (path.GetComponent<PathComponent>().isFull() == false) {
             wayPoint = path.GetComponent<PathComponent>().getNextWaypoint();
-            Debug.Log("new waypoint is "+ wayPoint.name);
-            // GetComponent<Animator>().Play("philosopher1_walk");
-        }
 
-        // GetComponent<Animator>().Play("philosopher1_idle");
+            // if (!oldWayPoint || wayPoint.name != oldWayPoint.name) {
+            //     oldWayPoint = wayPoint;
+            // }
+
+            Debug.Log("new waypoint is "+ wayPoint.name);
+            
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (wayPoint) {
-            transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);  
         }
+
+        if (transform.position == Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime)) {
+            GetComponent<Animator>().Play("philosopher1_idle");
+        } else {
+            GetComponent<Animator>().Play("philosopher1_walk");
+        }
+
     }
 }
