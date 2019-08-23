@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class HopliteComponent : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class HopliteComponent : MonoBehaviour
     private EventComponent EventHandler;
     private HealthBarComponent healthBar;
     private ThunderboldHandler flashCamera;
-    private GameObject defeateHandler;
 
     private AudioManagerComponent audioManager;
     // private Scene currentScene;
@@ -21,8 +19,6 @@ public class HopliteComponent : MonoBehaviour
         EventHandler = GameObject.Find("EventHandler").GetComponent<EventComponent>();
         healthBar = GameObject.Find("HealthBar").GetComponent<HealthBarComponent>();
         flashCamera = GameObject.Find("Flash").GetComponent<ThunderboldHandler>();
-        defeateHandler = GameObject.Find("Defeate");
-        defeateHandler.SetActive(false);
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManagerComponent>();
         // currentScene = SceneManager.GetActiveScene();
         audioManager.PlaySound("GameBeginMusic");
@@ -90,24 +86,15 @@ public class HopliteComponent : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        
-        // When the Hoplite is dead
-        if (!healthBar.isAlive()) {
-            defeateHandler.SetActive(true);
-            return;
-        }
-
-        if (target) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                TryKickOut();
-            }
-            if (Input.GetKeyDown(KeyCode.Return)) {
-                TryLetInside();
+        if (healthBar.isAlive()) {
+            if (target) {
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    TryKickOut();
+                }
+                if (Input.GetKeyDown(KeyCode.Return)) {
+                    TryLetInside();
+                }
             }
         }
-
     }
 }

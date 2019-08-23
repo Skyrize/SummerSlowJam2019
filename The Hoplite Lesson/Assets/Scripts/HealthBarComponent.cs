@@ -12,11 +12,14 @@ public class HealthBarComponent : MonoBehaviour
     private float fastTimer = 0.1f;
     private float slowTimer = 0.3f;
     private float timer = 0;
+    private GameObject defeateHandler;
     
     void Start()
     {
         bar = transform.Find("Bar");
         maxHealth = health;
+        defeateHandler = GameObject.Find("Defeate");
+        defeateHandler.SetActive(false);
     }
 
     public void setSize(float size)
@@ -58,8 +61,8 @@ public class HealthBarComponent : MonoBehaviour
 
     private void Update() {
         removeHealth(dyingSpeed * Time.deltaTime);
-        if (health <= 0)
-            Debug.Log("need to trigger endgame ..");
+        if (!isAlive())
+            defeateHandler.SetActive(true);
         if (health < 45) {
             if (timer <= 0) {
                 if (health < 30) {
