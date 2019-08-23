@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HopliteComponent : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class HopliteComponent : MonoBehaviour
     private EventComponent EventHandler;
     private HealthBarComponent healthBar;
     private ThunderboldHandler flashCamera;
+    private GameObject defeateHandler;
+    // private Scene currentScene;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +19,9 @@ public class HopliteComponent : MonoBehaviour
         EventHandler = GameObject.Find("EventHandler").GetComponent<EventComponent>();
         healthBar = GameObject.Find("HealthBar").GetComponent<HealthBarComponent>();
         flashCamera = GameObject.Find("Flash").GetComponent<ThunderboldHandler>();
+        defeateHandler = GameObject.Find("Defeate");
+        defeateHandler.SetActive(false);
+        // currentScene = SceneManager.GetActiveScene();
     }
 
     private bool isDecisionRight(bool accepted)
@@ -80,8 +87,13 @@ public class HopliteComponent : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
         // When the Hoplite is dead
         if (!healthBar.isAlive()) {
+            defeateHandler.SetActive(true);
             return;
         }
 
@@ -93,5 +105,6 @@ public class HopliteComponent : MonoBehaviour
                 TryLetInside();
             }
         }
+
     }
 }
