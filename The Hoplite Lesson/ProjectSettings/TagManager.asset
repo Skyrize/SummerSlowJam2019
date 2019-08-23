@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - zeus
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: zeus
+    uniqueID: 1237729165
     locked: 0

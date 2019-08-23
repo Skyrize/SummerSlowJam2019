@@ -18,13 +18,18 @@ public class PathFollowingComponent : MonoBehaviour
     {
         if (path.GetComponent<PathComponent>().isFull() == false) {
             wayPoint = path.GetComponent<PathComponent>().getNextWaypoint();
+            Debug.Log("new waypoint is "+ wayPoint.name);
+            // GetComponent<Animator>().Play("philosopher1_walk");
         }
+
+        // GetComponent<Animator>().Play("philosopher1_idle");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (wayPoint)
+        if (wayPoint) {
             transform.position = Vector3.MoveTowards(transform.position, wayPoint.transform.position, speed * Time.deltaTime);
+        }
     }
 }
