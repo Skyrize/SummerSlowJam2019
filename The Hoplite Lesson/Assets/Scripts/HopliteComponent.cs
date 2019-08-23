@@ -8,6 +8,7 @@ public class HopliteComponent : MonoBehaviour
     private EventComponent EventHandler;
     private HealthBarComponent healthBar;
     private ThunderboldHandler flashCamera;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,9 +78,13 @@ public class HopliteComponent : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // When the Hoplite is dead
+        if (!healthBar.isAlive()) {
+            return;
+        }
+
         if (target) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 TryKickOut();

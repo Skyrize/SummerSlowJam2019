@@ -12,6 +12,7 @@ public class HealthBarComponent : MonoBehaviour
     private float fastTimer = 0.1f;
     private float slowTimer = 0.3f;
     private float timer = 0;
+    
     void Start()
     {
         bar = transform.Find("Bar");
@@ -37,6 +38,19 @@ public class HealthBarComponent : MonoBehaviour
         health = Mathf.Max(0, health);
         setSize(health/maxHealth);
     }
+
+    /*
+     * Return true is the health bar is not empty, else false 
+     */
+    public bool isAlive()
+    {
+        if (health > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     public void SetColor(Color color)
     {
         transform.Find("Bar").Find("Sprite").GetComponent<SpriteRenderer>().color = color;
