@@ -7,11 +7,13 @@ public class HopliteComponent : MonoBehaviour
     public GameObject target;
     private EventComponent EventHandler;
     private HealthBarComponent healthBar;
+    private ThunderboldHandler flashCamera;
     // Start is called before the first frame update
     void Start()
     {
         EventHandler = GameObject.Find("EventHandler").GetComponent<EventComponent>();
         healthBar = GameObject.Find("HealthBar").GetComponent<HealthBarComponent>();
+        flashCamera = GameObject.Find("Flash").GetComponent<ThunderboldHandler>();
     }
 
     private bool isDecisionRight(bool accepted)
@@ -30,7 +32,7 @@ public class HopliteComponent : MonoBehaviour
     {
         healthBar.removeHealth(10);
         Debug.Log("Wrong Answer !");
-            //zeus
+        flashCamera.doCameraFlash = true;
         // gain time
     }
 
